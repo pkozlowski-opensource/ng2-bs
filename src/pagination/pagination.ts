@@ -1,4 +1,8 @@
-import {Component, View, NgFor, EventEmitter} from 'angular2/angular2';
+import {Component, View, Optional, NgFor, EventEmitter} from 'angular2/angular2';
+
+export class PaginationSettings {
+  constructor(public defaultPageSize: number = 10) {}
+}
 
 @Component({
   selector: 'bs-pagination',
@@ -11,25 +15,30 @@ import {Component, View, NgFor, EventEmitter} from 'angular2/angular2';
 })
 export class BsPagination {
   pageChange = new EventEmitter();
-  _collectionSize;
-  _pageNo = 0;
-  _pageSize = 10; //TODO: how this should be configured "globally"?
+  _settings: PaginationSettings;
+  _collectionSize: number = 0;
+  _pageNo: number = 0;
+  _pageSize: number;
   _pages = [];
 
+  //TODO: why I can't inject optional settings here?
+  constructor(/*@Optional _settings: PaginationSettings*/) {
+    this._settings = new PaginationSettings();
+    this._pageSize = this._settings.defaultPageSize;
+  }
+
   set pageNo(newPageNo) {
-    //TODO: type conversion - this could be a string
-    this.selectPage(newPageNo);
+    this.selectPage(parseInt(newPageNo, 10));
   }
 
   set collectionSize(newSize) {
-    //TODO: type conversion - this could be a string
-    this._collectionSize = newSize;
+    this._collectionSize = parseInt(newSize, 10);
     this._updatePages();
   }
 
   set pageSize(newSize) {
-    //TODO: type conversion - this could be a string
-    this._pageSize = newSize > 0 ? newSize : 10;
+    newSize = parseInt(newSize, 10);
+    this._pageSize = newSize > 0 ? newSize : this._settings.defaultPageSize;
     this._updatePages();
   }
 

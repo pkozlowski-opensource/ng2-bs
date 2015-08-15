@@ -11,6 +11,7 @@ import {BsPagination} from './pagination/pagination';
 })
 export class BsDemoApp {
     pagination = {
+      page: 1,
       collection: 100,
       items: 10
     };
@@ -20,8 +21,9 @@ export class BsDemoApp {
         console.log('Alert closed');
     }
 
-    pageChanged($event) {
-        console.log('Page changed', $event);
+    pageChanged(newPage) {
+        this.pagination.page = newPage;
+        console.log('New page:', this.pagination.page);
     }
 }
 
