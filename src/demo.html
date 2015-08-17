@@ -2,4 +2,4 @@
 <hr/>
 <label>Collection size: <input type="number" [(ng-model)]="pagination.collection"></label><br>
 <label>Items per page: <input type="number" [(ng-model)]="pagination.items"></label><br>
-<bs-pagination page-no="1" [collection-size]="pagination.collection" (page-change)="pageChanged($event)"></bs-pagination><br>
+<bs-pagination page-no="1" [collection-size]="pagination.collection" [page-size]="pagination.items" (page-change)="pageChanged($event)"></bs-pagination><br>

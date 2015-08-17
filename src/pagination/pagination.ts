@@ -21,9 +21,8 @@ export class BsPagination {
   _pageSize: number;
   _pages = [];
 
-  //TODO: why I can't inject optional settings here?
-  constructor(/*@Optional _settings: PaginationSettings*/) {
-    this._settings = new PaginationSettings();
+  constructor(@Optional() _settings: PaginationSettings) {
+    this._settings = _settings ? _settings : new PaginationSettings();
     this._pageSize = this._settings.defaultPageSize;
   }
 

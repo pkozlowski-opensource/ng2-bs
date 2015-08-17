@@ -1,6 +1,6 @@
-import {Component, View, bootstrap, formDirectives} from 'angular2/angular2';
+import {Component, View, bootstrap, bind, formDirectives} from 'angular2/angular2';
 import {BsAlert} from './alert/alert';
-import {BsPagination} from './pagination/pagination';
+import {BsPagination, PaginationSettings} from './pagination/pagination';
 
 @Component({
     selector: 'bs-demo-app'
@@ -13,7 +13,7 @@ export class BsDemoApp {
     pagination = {
       page: 1,
       collection: 100,
-      items: 10
+      items: 20
     };
 
 
@@ -27,4 +27,4 @@ export class BsDemoApp {
     }
 }
 
-bootstrap(BsDemoApp);
+bootstrap(BsDemoApp, [bind(PaginationSettings).toValue(new PaginationSettings(20))]);
