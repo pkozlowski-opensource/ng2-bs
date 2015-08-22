@@ -45,19 +45,11 @@ gulp.task('libs', ['ng2'], function () {
 });
 
 gulp.task('play', ['libs', 'html', 'js'], function () {
-    var http = require('http');
-    var connect = require('connect');
-    var serveStatic = require('serve-static');
-    var open = require('open');
-
-    var port = 9000, app;
+    var httpPlay = require('http-play');
 
     gulp.watch(PATHS.src.html, ['html']);
     gulp.watch(PATHS.src.js, ['js']);
 
-    app = connect().use(serveStatic(__dirname + '/dist'));  // serve everything that is static
-    http.createServer(app).listen(port, function () {
-        open('http://localhost:' + port);
-    });
+    httpPlay({dist: __dirname + '/dist', port: 9000});
 });
 
