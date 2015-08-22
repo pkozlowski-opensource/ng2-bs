@@ -7,6 +7,7 @@ var PATHS = {
     },
     lib: [
         'node_modules/angular2/node_modules/traceur/bin/traceur-runtime.js',
+        'node_modules/angular2/bundles/angular2.js',
         'node_modules/systemjs/dist/system-csp-production.js'
     ]
 };
@@ -14,12 +15,6 @@ var PATHS = {
 gulp.task('clean', function (done) {
     var del = require('del');
     del(['dist'], done);
-});
-
-gulp.task('ng2', function () {
-    var download = require('gulp-download');
-    var ng2Version = require('./package.json').dependencies.angular2;
-    return download('https://code.angularjs.org/' + ng2Version + '/angular2.js').pipe(gulp.dest('dist/lib'));
 });
 
 gulp.task('js', function () {
@@ -40,7 +35,7 @@ gulp.task('html', function () {
     return gulp.src(PATHS.src.html).pipe(gulp.dest('dist'));
 });
 
-gulp.task('libs', ['ng2'], function () {
+gulp.task('libs', function () {
     return gulp.src(PATHS.lib).pipe(gulp.dest('dist/lib'));
 });
 

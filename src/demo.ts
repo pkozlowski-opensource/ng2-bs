@@ -1,4 +1,4 @@
-import {Component, View, bootstrap, bind, formDirectives} from 'angular2/angular2';
+import {Component, View, bootstrap, bind, FORM_DIRECTIVESS} from 'angular2/angular2';
 import {BsAlert} from './alert/alert';
 import {BsPagination, PaginationSettings} from './pagination/pagination';
 
@@ -7,7 +7,7 @@ import {BsPagination, PaginationSettings} from './pagination/pagination';
 })
 @View({
     templateUrl: 'demo.html',
-    directives: [formDirectives, BsAlert, BsPagination]
+    directives: [FORM_DIRECTIVESS, BsAlert, BsPagination]
 })
 export class BsDemoApp {
     pagination = {

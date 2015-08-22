@@ -13,12 +13,11 @@
   "devDependencies": {
     "del": "^1.2.0",
     "gulp": "^3.9.0",
-    "gulp-download": "0.0.1",
     "gulp-typescript": "^2.8.0",
     "http-play": "^0.1.0"
   },
   "dependencies": {
-    "angular2": "2.0.0-alpha.34",
+    "angular2": "2.0.0-alpha.35",
     "systemjs": "0.18.4"
   }
 }
