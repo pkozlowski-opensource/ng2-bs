@@ -3,3 +3,10 @@
 <label>Collection size: <input type="number" [(ng-model)]="pagination.collection"></label><br>
 <label>Items per page: <input type="number" [(ng-model)]="pagination.items"></label><br>
 <bs-pagination page-no="1" [collection-size]="pagination.collection" [page-size]="pagination.items" (page-change)="pageChanged($event)"></bs-pagination><br>
+<hr/>
+<bs-button type="primary">Primary</be-button>
+<bs-button type="secondary">Secondary</be-button>
+<bs-button type="success">Success</be-button>
+<bs-button type="warning">Warning</be-button>
+<bs-button type="danger">Danger</be-button>
+<bs-button type="link">Link</be-button>
