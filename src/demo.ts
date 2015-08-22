@@ -1,4 +1,4 @@
-import {Component, View, bootstrap, bind, FORM_DIRECTIVESS} from 'angular2/angular2';
+import {Component, View, bootstrap, bind, FORM_DIRECTIVES} from 'angular2/angular2';
 import {BsAlert} from './alert/alert';
 import {BsPagination, PaginationSettings} from './pagination/pagination';
 
@@ -7,7 +7,7 @@ import {BsPagination, PaginationSettings} from './pagination/pagination';
 })
 @View({
     templateUrl: 'demo.html',
-    directives: [FORM_DIRECTIVESS, BsAlert, BsPagination]
+    directives: [FORM_DIRECTIVES, BsAlert, BsPagination]
 })
 export class BsDemoApp {
     pagination = {
@@ -21,7 +21,7 @@ export class BsDemoApp {
         console.log('Alert closed');
     }
 
-    pageChanged(newPage) {
+    pageChanged(newPage: number) {
         this.pagination.page = newPage;
         console.log('New page:', this.pagination.page);
     }

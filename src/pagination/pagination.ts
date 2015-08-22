@@ -19,37 +19,37 @@ export class BsPagination {
   _collectionSize: number = 0;
   _pageNo: number = 0;
   _pageSize: number;
-  _pages = [];
+  _pages: number[] = [];
 
   constructor(@Optional() _settings: PaginationSettings) {
     this._settings = _settings ? _settings : new PaginationSettings();
     this._pageSize = this._settings.defaultPageSize;
   }
 
-  set pageNo(newPageNo) {
-    this.selectPage(parseInt(newPageNo, 10));
+  set pageNo(newPageNo: number | string) {
+    this.selectPage(parseInt(`${newPageNo}`, 10));
   }
 
-  set collectionSize(newSize) {
-    this._collectionSize = parseInt(newSize, 10);
+  set collectionSize(newSize: number | string) {
+    this._collectionSize = parseInt(`${newSize}`, 10);
     this._updatePages();
   }
 
-  set pageSize(newSize) {
-    newSize = parseInt(newSize, 10);
-    this._pageSize = newSize > 0 ? newSize : this._settings.defaultPageSize;
+  set pageSize(newSize: number | string) {
+    var parsedSize = parseInt(`${newSize}`, 10);
+    this._pageSize = parsedSize > 0 ? parsedSize : this._settings.defaultPageSize;
     this._updatePages();
   }
 
-  hasPrevious() {
+  hasPrevious(): boolean {
     return this._pageNo > 1;
   }
 
-  hasNext() {
+  hasNext(): boolean {
     return this._pageNo < this._pages.length;
   }
 
-  selectPage(pageNumber) {
+  selectPage(pageNumber: number): void {
     var prevPageNo = this._pageNo;
     this._pageNo = Math.max(Math.min(pageNumber, this._pages.length), 1);
 
@@ -59,7 +59,7 @@ export class BsPagination {
   }
 
   //TODO: is lazy-re-calculating the best option here? Would immutable data structures help?
-  _updatePages() {
+  _updatePages(): void {
     //re-calculate new length of pages
     var pageCount = Math.ceil(this._collectionSize / this._pageSize);
 

@@ -15,16 +15,16 @@ export class BsAlert {
     _type: string = BsAlert.alertTypes[2];
     dismiss: EventEmitter = new EventEmitter();
 
-    set type(val) {
+    set type(val: string) {
         this._type = BsAlert.alertTypes.indexOf(val) !== -1 ? val : BsAlert.alertTypes[2];
     }
 
-    set dismissible(val) {
+    set dismissible(val: string | boolean) {
         this._dismissible = String(val) == "true";
     }
 
     close(): void {
-        this.dismiss.next();
+        this.dismiss.next(null);
     }
 }
 
