@@ -1,13 +1,14 @@
 import {Component, View, bootstrap, bind, FORM_DIRECTIVES} from 'angular2/angular2';
 import {BsAlert} from './alert/alert';
 import {BsPagination, PaginationSettings} from './pagination/pagination';
+import {BsPanel} from './panel/panel';
 
 @Component({
     selector: 'bs-demo-app'
 })
 @View({
     templateUrl: 'demo.html',
-    directives: [FORM_DIRECTIVES, BsAlert, BsPagination]
+    directives: [FORM_DIRECTIVES, BsAlert, BsPagination, BsPanel]
 })
 export class BsDemoApp {
     pagination = {
@@ -15,7 +16,6 @@ export class BsDemoApp {
       collection: 100,
       items: 20
     };
-
 
     alertClosed() {
         console.log('Alert closed');

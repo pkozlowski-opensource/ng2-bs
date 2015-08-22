@@ -1,0 +1,11 @@
+<div class="panel panel-{{type || 'primary'}}">
+    <div class="panel-heading">
+        <template [ng-if]="title">{{title}}</template>
+        <template [ng-if]="!title">
+            <ng-content select="bs-panel-title"></ng-content>
+        </template>
+    </div>
+    <div class="panel-body">
+        <ng-content></ng-content>
+    </div>
+</div>

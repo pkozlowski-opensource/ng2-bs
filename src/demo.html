@@ -1,5 +1,13 @@
+
 <bs-alert [dismissible]="true" type="success" (dismiss)="alertClosed()">some content</bs-alert>
 <hr/>
+
 <label>Collection size: <input type="number" [(ng-model)]="pagination.collection"></label><br>
 <label>Items per page: <input type="number" [(ng-model)]="pagination.items"></label><br>
 <bs-pagination page-no="1" [collection-size]="pagination.collection" [page-size]="pagination.items" (page-change)="pageChanged($event)"></bs-pagination><br>
+
+<hr/>
+<bs-panel>
+    <bs-panel-title><b>Some title with HTML</b></bs-panel-title>
+    Panel demo content
+</bs-panel>
