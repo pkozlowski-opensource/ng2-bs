@@ -1,6 +1,4 @@
 var gulp = require('gulp');
-var del = require('del');
-var typescript = require('gulp-typescript');
 
 var PATHS = {
     src: {
@@ -14,6 +12,7 @@ var PATHS = {
 };
 
 gulp.task('clean', function (done) {
+    var del = require('del');
     del(['dist'], done);
 });
 
@@ -24,6 +23,7 @@ gulp.task('ng2', function () {
 });
 
 gulp.task('js', function () {
+    var typescript = require('gulp-typescript');
     var tsResult = gulp.src(PATHS.src.js)
         .pipe(typescript({
             noImplicitAny: true,
