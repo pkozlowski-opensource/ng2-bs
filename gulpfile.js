@@ -20,7 +20,7 @@ gulp.task('clean', function (done) {
 
 gulp.task('js', function () {
     var typescript = require('gulp-typescript');
-    var tsResult = gulp.src([PATHS.src.js, , PATHS.typings])
+    var tsResult = gulp.src([PATHS.src.js, PATHS.typings])
         .pipe(typescript({
             noImplicitAny: true,
             module: 'system',

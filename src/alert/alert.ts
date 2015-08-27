@@ -29,3 +29,4 @@ export class BsAlert {
 }
 
 //TODO: self-closing as a default handler?
+//TODO: closing on timeout as an extension?
