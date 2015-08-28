@@ -1,11 +1,11 @@
-<div class="panel panel-{{type || 'primary'}}">
+<div class="panel panel-{{type || 'default'}}">
     <div class="panel-heading">
-        <template [ng-if]="title">{{title}}</template>
-        <template [ng-if]="!title">
-            <ng-content select="bs-panel-title"></ng-content>
-        </template>
+        <ng-content select="bs-panel-heading"></ng-content>{{hasHeadings() ? '' : panelTitle}}
     </div>
     <div class="panel-body">
         <ng-content></ng-content>
+    </div>
+    <div class="panel-footer" *ng-if="hasFooters()">
+        <ng-content select="bs-panel-footer"></ng-content>
     </div>
 </div>
