@@ -14,7 +14,12 @@
     "del": "^1.2.0",
     "gulp": "^3.9.0",
     "gulp-typescript": "^2.8.0",
-    "http-play": "^0.1.0"
+    "http-play": "^0.1.0",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.9",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-jasmine": "^0.3.6",
+    "typescript": "^1.6.0-dev.20150915"
   },
   "dependencies": {
     "angular2": "2.0.0-alpha.37",

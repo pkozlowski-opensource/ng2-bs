@@ -3,12 +3,13 @@ var gulp = require('gulp');
 var PATHS = {
     src: {
         js: 'src/**/*.ts',
+        test: 'test/**/*.spec.ts',
         html: 'src/**/*.html'
     },
     lib: [
         'node_modules/angular2/node_modules/traceur/bin/traceur-runtime.js',
-        'node_modules/angular2/bundles/angular2.js',
-        'node_modules/systemjs/dist/system-csp-production.js'
+        'node_modules/systemjs/dist/system-csp-production.js',
+        'node_modules/angular2/bundles/angular2.js'
     ],
     typings: 'node_modules/angular2/bundles/typings/angular2/angular2.d.ts'
 };
@@ -40,6 +41,25 @@ gulp.task('libs', function () {
     return gulp.src(PATHS.lib).pipe(gulp.dest('dist/lib'));
 });
 
+gulp.task('test', function (done) {
+    var Server = require('karma').Server;
+    new Server({
+        browsers: ['Chrome'],
+        frameworks: ['jasmine'],
+        files: [
+            PATHS.lib[0], PATHS.lib[1], PATHS.lib[2], //TODO: do it better
+            PATHS.src.js,
+            PATHS.src.test,
+            'build/tests-bootstrap.js'
+        ],
+        preprocessors: {
+            '**/*.ts': ['TypeScript']
+        },
+        plugins: ['karma-jasmine', 'karma-chrome-launcher', require('./build/karma-typescript-preprocessor')],
+        singleRun: true
+    }, done).start();
+});
+
 gulp.task('play', ['libs', 'html', 'js'], function () {
     var httpPlay = require('http-play');
 
@@ -48,4 +68,3 @@ gulp.task('play', ['libs', 'html', 'js'], function () {
 
     httpPlay({dist: __dirname + '/dist', port: 9000});
 });
-
