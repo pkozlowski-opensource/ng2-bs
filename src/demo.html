@@ -12,3 +12,7 @@
     Panel demo content
     <bs-panel-footer>Some footer</bs-panel-footer>
 </bs-panel>
+
+<hr/>
+<label>Value: <input type="range" [(ng-model)]="progress.value"></label><br>
+<bs-progress [value]="progress.value" type="success"></bs-progress>
