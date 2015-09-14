@@ -1,9 +1,10 @@
 <div class="panel panel-{{type || 'default'}}">
-    <div class="panel-heading">
-        <ng-content select="bs-panel-heading"></ng-content>{{hasHeadings() ? '' : panelTitle}}
+    <div class="panel-heading" (click)="collapsed = !collapsed" role="tab">
+        <ng-content select="bs-panel-heading"></ng-content>
+        <h4 *ng-if="!hasHeadings()">{{panelTitle}}</h4>
     </div>
-    <div class="panel-body">
-        <ng-content></ng-content>
+    <div class="panel-collapse collapse" [class.in]="!collapsed" role="tabpanel" [attr.aria-expanded]="!collapsed">
+       <div class="panel-body"><ng-content></ng-content></div>
     </div>
     <div class="panel-footer" *ng-if="hasFooters()">
         <ng-content select="bs-panel-footer"></ng-content>

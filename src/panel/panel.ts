@@ -17,6 +17,7 @@ export class BsPanelFooter {}
 export class BsPanel {
     panelTitle: string;
     type: string;
+    collapsed: boolean = false;
     constructor(@Query(BsPanelHeading) private _headings: QueryList<BsPanelHeading>,
                 @Query(BsPanelFooter) private _footers: QueryList<BsPanelFooter>) {
     }
@@ -29,6 +30,3 @@ export class BsPanel {
         return this._footers.length > 0;
     }
 }
-
-//TODO: make it collapsible
-//TODO: how do I know if there is some content to project under a given selector?
