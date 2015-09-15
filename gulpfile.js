@@ -3,6 +3,7 @@ var gulp = require('gulp');
 var PATHS = {
     src: {
         js: 'src/**/*.ts',
+        test: 'test/**/*.spec.ts',
         html: 'src/**/*.html'
     },
     lib: [
@@ -40,6 +41,25 @@ gulp.task('libs', function () {
     return gulp.src(PATHS.lib).pipe(gulp.dest('dist/lib'));
 });
 
+gulp.task('test', function (done) {
+    var Server = require('karma').Server;
+    new Server({
+        browsers: ['Chrome'],
+        frameworks: ['jasmine'],
+        files: [
+            PATHS.lib[0], PATHS.lib[1], PATHS.lib[2], //TODO: better
+            //TODO: System.register config
+            PATHS.src.js,
+            PATHS.src.test
+        ],
+        preprocessors: {
+            '**/*.ts': ['TypeScript']
+        },
+        plugins: ['karma-jasmine', 'karma-chrome-launcher', require('./build/karma-typescript-preprocessor')],
+        singleRun: true
+    }, done).start();
+});
+
 gulp.task('play', ['libs', 'html', 'js'], function () {
     var httpPlay = require('http-play');
 
@@ -48,4 +68,3 @@ gulp.task('play', ['libs', 'html', 'js'], function () {
 
     httpPlay({dist: __dirname + '/dist', port: 9000});
 });
-
