@@ -9,17 +9,18 @@ var createTypeScriptPreprocessor = function (args, config, logger, helper) {
         log.debug('Processing "%s".', file.originalPath);
 
         //TODO: pass those options from "outside"
-        var compileResult = ts.transpile(content, {
+        var compilerOptions = {
             module: ts.ModuleKind.System,
-            moduleName: 'foo',
             experimentalDecorators: true
+        };
+
+        var compileResult = ts.transpileModule(content, {
+            compilerOptions: compilerOptions,
+            moduleName: 'foo' //TODO: "calculate" module name
         });
 
         //TODO: what happens if there is transpilation error?
-
-        console.log(compileResult);
-
-        done(compileResult);
+        done(compileResult.outputText); //keys: [ 'outputText', 'diagnostics', 'sourceMapText' ]
     };
 };
 
