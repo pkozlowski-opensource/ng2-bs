@@ -1,12 +1,16 @@
-
 <bs-alert [dismissible]="true" type="success" (dismiss)="alertClosed()">some content</bs-alert>
+
 <hr/>
 
 <label>Collection size: <input type="number" [(ng-model)]="pagination.collection"></label><br>
 <label>Items per page: <input type="number" [(ng-model)]="pagination.items"></label><br>
-<bs-pagination page-no="1" [collection-size]="pagination.collection" [page-size]="pagination.items" (page-change)="pageChanged($event)"></bs-pagination><br>
+<bs-pagination page-no="1"
+               [collection-size]="pagination.collection"
+               [page-size]="pagination.items"
+               (page-change)="pageChanged($event)"></bs-pagination><br>
 
 <hr/>
+
 <bs-panel panel-title="Text title (only when no HTML heading)">
     <bs-panel-heading><b>HTML</b> heading</bs-panel-heading>
     Panel demo content
@@ -14,5 +18,6 @@
 </bs-panel>
 
 <hr/>
+
 <label>Value: <input type="range" [(ng-model)]="progress.value"></label><br>
 <bs-progress [value]="progress.value" type="success"></bs-progress>
