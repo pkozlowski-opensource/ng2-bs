@@ -1,4 +1,4 @@
-<div class="alert alert-{{_type}}" [class.alert-dismissible]="_dismissible" role="alert">
+<div class="alert alert-{{_type || 'warning'}}" [class.alert-dismissible]="_dismissible" role="alert">
     <button *ng-if="_dismissible" type="button" class="close" aria-label="Close" (click)="close()">
         <span aria-hidden="true">&times;</span>
     </button>
