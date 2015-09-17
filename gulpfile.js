@@ -23,6 +23,7 @@ gulp.task('js', function () {
     var typescript = require('gulp-typescript');
     var tsResult = gulp.src([PATHS.src.js, PATHS.typings])
         .pipe(typescript({
+            typescript: require('typescript'), //use the version of TypeScript from this repo
             noImplicitAny: true,
             module: 'system',
             target: 'ES5',
