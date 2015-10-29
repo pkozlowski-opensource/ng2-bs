@@ -22,7 +22,7 @@
     "typescript": "^1.6.2"
   },
   "dependencies": {
-    "angular2": "2.0.0-alpha.37",
+    "angular2": "2.0.0-alpha.45",
     "systemjs": "0.18.4"
   }
 }
