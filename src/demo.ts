@@ -2,14 +2,14 @@ import {Component, View, bootstrap, bind, FORM_DIRECTIVES} from 'angular2/angula
 import {NgbAlert} from './alert/alert';
 import {NgbPagination} from './pagination/pagination';
 import {BsPanel, BsPanelHeading, BsPanelFooter} from './panel/panel';
-import {BsProgress} from './progress/progress';
+import {NgbProgress} from './progress/progress';
 
 @Component({
     selector: 'bs-demo-app'
 })
 @View({
     templateUrl: 'demo.html',
-    directives: [FORM_DIRECTIVES, NgbAlert, NgbPagination, BsPanel, BsPanelHeading, BsPanelFooter, BsProgress]
+    directives: [FORM_DIRECTIVES, NgbAlert, NgbPagination, BsPanel, BsPanelHeading, BsPanelFooter, NgbProgress]
 })
 export class BsDemoApp {
     pagination = {
