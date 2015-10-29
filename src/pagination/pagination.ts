@@ -1,65 +1,65 @@
-import {Component, View, Optional, NgFor, EventEmitter} from 'angular2/angular2';
-
-export class PaginationSettings {
-  constructor(public defaultPageSize: number = 10) {}
-}
+import {Component, EventEmitter, Input, Output, NgFor} from 'angular2/angular2';
 
 @Component({
-  selector: 'bs-pagination',
-  properties: ['pageNo', 'collectionSize', 'pageSize'],
-  events: ['pageChange']
+  selector: 'ngb-pagination',
+  directives: [NgFor],
+  template: `
+    <ul class="pagination pagination-lg">
+      <li [class.disabled]="!hasPrevious()">
+          <a (click)="selectPage(_page-1)">&laquo;</a>
+      </li>
+
+      <li *ng-for="#pageNumber of _pages" [class.active]="pageNumber === _page">
+        <a (click)="selectPage(pageNumber)">{{pageNumber}}</a>
+      </li>
+
+      <li [class.disabled]="!hasNext()">
+        <a (click)="selectPage(_page+1)">&raquo;</a>
+      </li>
+    </ul>
+  `
 })
-@View({
-  templateUrl: 'pagination/pagination.html',
-  directives: [NgFor]
-})
-export class BsPagination {
-  pageChange = new EventEmitter();
-  _settings: PaginationSettings;
-  _collectionSize: number = 0;
-  _pageNo: number = 0;
-  _pageSize: number;
+export class NgbPagination {
+  _collectionSize= 0;
+  _page = 0;
+  _pageSize = 10;
   _pages: number[] = [];
 
-  constructor(@Optional() _settings: PaginationSettings) {
-    this._settings = _settings ? _settings : new PaginationSettings();
-    this._pageSize = this._settings.defaultPageSize;
+  @Input() set page(newPage: number | string) {
+    this.selectPage(parseInt(`${newPage}`, 10));
   }
 
-  set pageNo(newPageNo: number | string) {
-    this.selectPage(parseInt(`${newPageNo}`, 10));
-  }
-
-  set collectionSize(newSize: number | string) {
+  @Input() set collectionSize(newSize: number | string) {
     this._collectionSize = parseInt(`${newSize}`, 10);
     this._updatePages();
   }
 
-  set pageSize(newSize: number | string) {
-    var parsedSize = parseInt(`${newSize}`, 10);
-    this._pageSize = parsedSize > 0 ? parsedSize : this._settings.defaultPageSize;
+  @Input() set pageSize(newSize: number | string) {
+    this._pageSize = parseInt(`${newSize}`, 10);
     this._updatePages();
   }
 
+  @Output() pageChange = new EventEmitter();
+
   hasPrevious(): boolean {
-    return this._pageNo > 1;
+    return this._page > 1;
   }
 
   hasNext(): boolean {
-    return this._pageNo < this._pages.length;
+    return this._page < this._pages.length;
   }
 
   selectPage(pageNumber: number): void {
-    var prevPageNo = this._pageNo;
-    this._pageNo = Math.max(Math.min(pageNumber, this._pages.length), 1);
+    var prevPageNo = this._page;
+    this._page = Math.max(Math.min(pageNumber, this._pages.length), 1);
 
-    if (this._pageNo != prevPageNo) {
-      this.pageChange.next(this._pageNo);
+    if (this._page != prevPageNo) {
+      this.pageChange.next(this._page);
     }
   }
 
   //TODO: is lazy-re-calculating the best option here? Would immutable data structures help?
-  _updatePages(): void {
+  private _updatePages(): void {
     //re-calculate new length of pages
     var pageCount = Math.ceil(this._collectionSize / this._pageSize);
 
@@ -70,6 +70,6 @@ export class BsPagination {
     }
 
     //make sure that the selected page is within available pages range
-    this.selectPage(this._pageNo);
+    this.selectPage(this._page);
   }
 }
