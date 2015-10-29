@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output, NgIf} from 'angular2/angular2';
 
 @Component({
-    selector: 'bs-alert',
+    selector: 'ngb-alert',
     directives: [NgIf],
     template: `
         <div class="alert alert-{{type || 'warning'}}" [class.alert-dismissible]="_dismissible" role="alert">
@@ -12,7 +12,7 @@ import {Component, EventEmitter, Input, Output, NgIf} from 'angular2/angular2';
         </div>
     `
 })
-export class BsAlert {
+export class NgbAlert {
     _dismissible = false;
     @Input() type: string;
     @Output() dismiss: EventEmitter = new EventEmitter();
