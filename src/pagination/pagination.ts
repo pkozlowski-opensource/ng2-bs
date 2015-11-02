@@ -4,19 +4,27 @@ import {Component, EventEmitter, Input, Output, NgFor} from 'angular2/angular2';
   selector: 'ngb-pagination',
   directives: [NgFor],
   template: `
-    <ul class="pagination pagination-lg">
-      <li [class.disabled]="!hasPrevious()">
-          <a (click)="selectPage(_page-1)">&laquo;</a>
-      </li>
+    <nav>
+      <ul class="pagination">
+        <li [class.disabled]="!hasPrevious()">
+            <a aria-hidden="true" (click)="selectPage(_page-1)">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+        </li>
 
-      <li *ng-for="#pageNumber of _pages" [class.active]="pageNumber === _page">
-        <a (click)="selectPage(pageNumber)">{{pageNumber}}</a>
-      </li>
+        <li *ng-for="#pageNumber of _pages" [class.active]="pageNumber === _page">
+          <a (click)="selectPage(pageNumber)">{{pageNumber}}</a>
+        </li>
 
-      <li [class.disabled]="!hasNext()">
-        <a (click)="selectPage(_page+1)">&raquo;</a>
-      </li>
-    </ul>
+        <li [class.disabled]="!hasNext()">
+          <a aria-label="Next" (click)="selectPage(_page+1)">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
   `
 })
 export class NgbPagination {
