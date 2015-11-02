@@ -7,7 +7,7 @@ import {Component, EventEmitter, Input, Output, NgFor} from 'angular2/angular2';
     <nav>
       <ul class="pagination">
         <li [class.disabled]="!hasPrevious()">
-            <a aria-hidden="true" (click)="selectPage(_page-1)">
+            <a aria-label="Previous" (click)="selectPage(_page-1)">
               <span aria-hidden="true">&laquo;</span>
               <span class="sr-only">Previous</span>
             </a>
